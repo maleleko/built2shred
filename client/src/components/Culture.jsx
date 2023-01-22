@@ -13,7 +13,7 @@ const Culture = () => {
     <div className='culture-content'>
 
       <div className='culture-history font-mono text-xl'>
-        <h2>the history of skateboarding.</h2>
+        <h2 className='text-slate-600'>the history of skateboarding.</h2>
       </div>
 
         <div className='section1'>
@@ -122,8 +122,7 @@ const Culture = () => {
         <iframe width="560" height="315" src={`https://www.youtube.com/embed/${youtubeID}?autoplayer=0`} title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div> */}
       </div>
-
-    </div>
+      </div>
   )
 }
 

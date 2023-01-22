@@ -1,13 +1,11 @@
-
-
-
-
 /* granim style */
 .bloc-logo {
   position: relative;
   width: 100%;
-  height: 50vh;
+  height: 100vh;
   margin: 0px auto 0px;
+  background-position: inherit;
+  top: 6rem;
 }
 
 .bloc-logo canvas, .bloc-logo .lgo {
@@ -29,7 +27,8 @@
   background-size: contain;
 }
 
-.logo-mask
+
+
 
 /* index css */
 .indexContainer {
@@ -56,24 +55,30 @@
 }
 
 
+
+
+
 /* navbar css */
 .nav {
   margin: 0rem auto 0rem;
-  width: 25%;
+  width: 30rem;
   border-bottom: 1px solid black;
   border-bottom-width: 1px;
-
 }
 
-/* .abtn:hover {
-  display: block;
-}  */
+
+
 
 .displayed-content {
   display: flex;
 }
 
 
+
+/* main webpage css */
+.boarddisplay {
+  margin-top: -4rem;
+}
 
 
 
@@ -113,17 +118,13 @@
   margin: 5rem auto 2rem;
   display: flex;
   justify-content: space-evenly;
-  /* background: rgb(2,0,36);
-  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(223,202,202,1) 52%, rgba(2,0,36,1) 100%);
-  background-size: 100%;
-  background-repeat: no-repeat;
-  border-radius: 100%; */
 }
 
-
-/* .content-details:background-color {
-
-} */
+.content-details1 {
+  margin: 8rem auto 2rem;
+  display: flex;
+  justify-content: space-evenly;
+}
 
 .boardWrapper {
   margin: 0 auto;
@@ -154,9 +155,23 @@
 }
 
 .solidLine {
-  border: 0px 0px 2px 0px solid black;
+  /* width: 5rem; */
+  border-bottom: 1px solid rgb(219, 219, 219);
   border-style: solid;
-  width: 5rem;
+  width: 0.5rem;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.info2 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
 .buttons {

@@ -8,29 +8,6 @@ import Granim from 'granim'
 
 const OneBoard = () => {
 
-
-useEffect(()=> {
-    new Granim({
-        element: "#logo-canvas",
-        direction: "radial",
-        opacity: [1, 1],
-        states: {
-            'default-state':{
-                gradients: [
-                    ['#ffffff', '#202D3A'],
-                    ['#ffffff', '#000000'],
-                    ['#ffffff', '#7C8FA1'],
-                    ['#ffffff', '#5A5C6A'],
-                    // ['#ffffff', '#434343'],
-                    ['#ffffff', '#142432']
-                ],
-                transitionSpeed: 1500,
-            }
-        }
-    })
-}, [])
-
-
 const [boardImages, setBoardImages] = useState('')
 const [trucksImages, setTrucksImages] = useState('')
 const [wheelsImages, setWheelsImages] = useState('')
@@ -64,30 +41,57 @@ useEffect(()=>{
         })
     }
 
-  return (
+
+
+    useEffect(()=> {
+        new Granim({
+            element: "#logo-canvas",
+            direction: "radial",
+            opacity: [1, 1],
+            states: {
+                'default-state':{
+                    gradients: [
+                        ['#ffffff', '#202D3A'],
+                        ['#ffffff', '#000000'],
+                        ['#ffffff', '#536E8A'],
+                        ['#ffffff', '#5A5C6A'],
+                        ['#ffffff', '#434343'],
+                        ['#ffffff', '#6B646E']
+                    ],
+                    transitionSpeed: 1200,
+                }
+            }
+        })
+    }, [])
+
+return (
     <div className='bloc-logo'> 
-    <canvas id='logo-canvas' />
-    <div className="logo-mask">
+        <canvas id='logo-canvas' />
+            <div className="logo-mask">
     
     <div className='mainWrapper font-mono text-sm'>
-        <div className='content-details text-stone-700'>
+        <h2 className='header font-bold text-xl mt-6 text-stone-600'>{boardDetails.name}</h2>
+        <div className='content-details1 text-stone-600'>
             <div className='grid grid-cols-5 gap-1'>
                 <div className='gridLeft col-start-2 col-end-3'>
-                    <div>
+                    <div className='info'>
                         <p className='-rotate-3'>graphic</p>
-                        <p className='solidLine -rotate-3'></p>
-                        <p className='-rotate-3'>{boardDetails.boardBrand} </p>
+                        <p className='solidLine -rotate-6'></p>
+                        <p className='-rotate-3 text-slate-600'>{boardDetails.boardBrand} </p>
                     </div>
-                    <div>
+                    <div className='info'>
                         <p className='rotate-3'>trucks</p>
-                        <p className='solidLine -rotate-3'></p>
-                        <p className='rotate-3'>{boardDetails.trucks} </p>
+                        <p className='solidLine rotate-6'></p>
+                        <p className='rotate-3 text-slate-600'>{boardDetails.trucks} </p>
                     </div>
                 </div>
 
                 <div className='detailsSize' >
-                    <p className='-rotate-3'>size | {boardDetails.size}</p>
-            
+                    <div className='info'>
+                    <p className='-rotate-3'>size</p>
+                    <p className='solidLine -rotate-6'></p>
+                    <p className='-rotate-3 text-slate-600'>{boardDetails.size}</p>
+                    </div>
                 <div className='boardWrapper col-start-3'>
                     <div className='wholeComplete'>
                         {/* {boardImages} */}
@@ -96,19 +100,23 @@ useEffect(()=>{
                         <img className='wheels' src={wheelsImages} width='150rem' height='150rem' alt="wheels graphic" />
                     </div>
                 </div>
-                <p className='rotate-3'>grip | {boardDetails.griptape}</p>
+                <div className='info'>
+                    <p className='rotate-3'>grip </p>
+                    <p className='solidLine rotate-6'></p>
+                    <p className='rotate-3 text-slate-600'>{boardDetails.griptape}</p>
+                </div>
                 </div>
 
                 <div className='gridRight col-start-4 col-end-5'>
-                    <div>
-                        <p className='rotate-3'>wheels</p>
-                        <p className='solidLine -rotate-3'></p>
-                        <p className='rotate-3'>{boardDetails.wheels} </p>
+                    <div className='info'>
+                        <p className='rotate-3 text-stone-600'>wheels</p>
+                        <p className='solidLine rotate-6'></p>
+                        <p className='rotate-3 text-slate-600'>{boardDetails.wheels} </p>
                     </div>
-                    <div>
+                    <div className='info'>
                         <p className='-rotate-3'>bearings</p>
-                        <p className='solidLine -rotate-3'></p>
-                        <p className='-rotate-3'>{boardDetails.bearings} </p>
+                        <p className='solidLine -rotate-6'></p>
+                        <p className='-rotate-3 text-slate-600'>{boardDetails.bearings} </p>
                     </div>
                 </div>
 
@@ -116,11 +124,11 @@ useEffect(()=>{
         </div>
                 <div className='buttons'>
                 <Link to={`/setup/update/${boardDetails._id}`} className='editbtn text-emerald-500 hover:scale-150 animate-pulse duration-700'>edit</Link>
-                <p> | </p>
+                <p className='text-slate-600'> | </p>
                 <button className='delbtn text-red-500 hover:scale-150 animate-pulse duration-700 'onClick={deleteHandler}>delete</button>
                 </div>
                 </div>
-    </div>
+        </div>
     </div>
     )
 }

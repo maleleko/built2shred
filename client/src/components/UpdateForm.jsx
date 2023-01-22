@@ -5,8 +5,10 @@ import '../App.css'
 import boarddata from '../services/boarddata'
 import trucksdata from '../services/trucksdata'
 import wheeldata from '../services/wheeldata'
+import Granim from 'granim'
 
 const UpdateForm = () => {
+
     // states
     const [boardState, setBoardState] = useState('')
     const [truckState, setTruckState] = useState('')
@@ -121,122 +123,141 @@ const submitHandler = (e) => {
     })
 }
 
+
+    //background effect
+    useEffect(()=> {
+        new Granim({
+            element: "#logo-canvas",
+            direction: "radial",
+            opacity: [1, 1],
+            states: {
+                'default-state':{
+                    gradients: [
+                        ['#ffffff', '#202D3A'],
+                        ['#ffffff', '#000000'],
+                        ['#ffffff', '#536E8A'],
+                        ['#ffffff', '#5A5C6A'],
+                        ['#ffffff', '#434343'],
+                        ['#ffffff', '#6B646E']
+                    ],
+                    transitionSpeed: 1200,
+                }
+            }
+        })
+    }, [])
+
 return (
+    <div className='bloc-logo'> 
+    <canvas id='logo-canvas' />
+    <div className="logo-mask">
+
 <div className='mainWrapper font-mono'>
     <div className='header'>
-    <h2 className='header font-bold text-xl mt-6'><p className=' text-rose-400'>re:</p>define your style</h2>
+    <h2 className='header font-bold text-xl mt-6 text-stone-600'><p className=' text-rose-400'>re:</p>define your style</h2>
     </div>
     <div className='content-details'>
         <form onSubmit={submitHandler}>
 
-            <div className='hover:scale-110 duration-700' >
+            <div className='hover:scale-110 duration-700 w-56' >
                 {/* name selection */}
-                <label className='sillyStyling text-indigo-400 text-xs'>name <p className='text-xs'>|optional</p></label>
-                <div className='solidLine'></div>
-                <input className='rounded-3xl border border-indigo-300' value={name} type="text" onChange={(e)=>setName(e.target.value)}/>
+                <label className='sillyStyling text-stone-600 text-xs'>name <p className='text-xs'>|optional</p></label>
+                <input className='rounded-3xl border bg-inherit border-indigo-400 text-slate-600' value={name} type="text" onChange={(e)=>setName(e.target.value)}/>
             </div>
 
 
         <div className="grid gird-cols-5 gap-1">
 
         <div className="gridLeft col-start-2 col-end-3" >
-            <div className='hover:scale-110 duration-700 -rotate-3'>
+            <div className='info hover:scale-110 duration-700 -rotate-3'>
                 {/* graphic select */}
-                <label className='text-indigo-400'>graphic</label>
-                <div className='solidLine'></div>
-                {/* <select className='rounded-3xl border-none border-transparent border-indigo-400 text-center' value={boardBrand} onChange={(e)=>setBoardBrand(e.target.value)} onSelect={changeBoard}> */}
-                <select className='rounded-3xl border-none border-transparent border-indigo-400 text-center' value={boardBrand} onChange={(e)=>setBoardBrand(e.target.value)} onClick={changeBoard} >
+                <label className='text-stone-600'>graphic</label>
+                <select className='rounded-3xl border-none border-transparent border-indigo-400 text-center bg-inherit text-slate-600' value={boardBrand} onChange={(e)=>setBoardBrand(e.target.value)} onClick={changeBoard} >
                     {boarddata.map((d) => (
                     <option key={d.id} value={d.id} > {d.value} </option>))}
                 </select>
-                {errors.boardBrand &&  <p className='text-rose-400'>{errors.boardBrand.message}</p>}
+                {errors.boardBrand &&  <p className='w-40 text-rose-400'>{errors.boardBrand.message}</p>}
             </div>
 
-            <div className='hover:scale-110 duration-700 rotate-3'>
+            <div className='info hover:scale-110 duration-700 rotate-3'>
                 {/* griptape select */}
-                <label className='text-indigo-400'>griptape</label>
-                <div className='solidLine'></div>
-                <select className='rounded-3xl border-none border-transparent border-indigo-400 text-center' value={griptape} onChange={(e)=>setGriptape(e.target.value)}>
+                <label className='text-stone-600'>griptape</label>
+                <select className='bg-inherit rounded-3xl border-none border-transparent border-indigo-400 text-center text-slate-600' value={griptape} onChange={(e)=>setGriptape(e.target.value)}>
                     <option>choose grip</option>
                     <option value="jessup">jessup</option>
                     <option value="MOB">MOB</option>
                     <option value="steelo">steelo</option>
                 </select>
-                {errors.griptape &&  <p className='text-rose-400'>{errors.griptape.message}</p>}
+                {errors.griptape &&  <p className=' w-40 text-rose-400'>{errors.griptape.message}</p>}
             </div>
         </div>
 
         <div className="detailsSize">
           {/* size select */}
-        <div className='hover:scale-110 duration-700' >
-            <label className='text-indigo-400'>size</label>
-            <div className='solidLine'></div>
-            <select className='rounded-3xl border-none border-transparent border-indigo-400 text-center' value={size} onChange={(e)=>setSize(e.target.value)}>
+        <div className='info hover:scale-110 duration-700' >
+            <label className='text-stone-600'>size</label>
+            <select className='rounded-3xl border-none border-transparent border-indigo-400 text-center bg-inherit text-slate-600' value={size} onChange={(e)=>setSize(e.target.value)}>
                 <option value="">choose width</option>
                 <option value="8.25">8.25</option>
                 <option value="8.5">8.5</option>
                 <option value="8.75">8.75</option>
             </select>
-            {errors.size &&  <p className='text-rose-400 transition: transform'>{errors.size.message}</p>}
+            {errors.size &&  <p className='w-40 text-rose-400 transition: transform'>{errors.size.message}</p>}
             </div>
 
             {/* BOARD IMAGE STATE */}
             <div className="boardWrapper col-start-3">
                 <div className='wholeComplete col-start-3'>
-                    {/* {boardState.boardBrandImage} */}
                         
                         <img className='board' src={boardState?.image} width='125rem' height='125rem' alt="building a board" />
-
                         <img  className='trucks' src={truckState?.image} width='125rem' height='125rem' alt='trucks' />
                         <img className='wheels' src={wheelState?.image} width='125rem' height='125rem' alt='wheels' />
                 </div>
             </div>
-            <div className='hover:scale-110 duration-700'>
+            <div className='info hover:scale-110 duration-700'>
                 {/* bearrings select */}
-                <label className='text-indigo-400'>bearings</label>
-                <p className='solidLine'></p>
-                <select className='rounded-3xl border-none border-transparent border-indigo-400 text-center' value={bearings} onChange={(e)=>setBearings(e.target.value)}>
+                <label className='text-stone-600'>bearings</label>
+                <select className='rounded-3xl border-none border-transparent border-indigo-400 text-center bg-inherit text-slate-600' value={bearings} onChange={(e)=>setBearings(e.target.value)}>
                     <option>choose bearings</option>
                     <option value="bones bearings">bones</option>
                     <option value="bronson">bronson</option>
                     <option value="cortina">cortina</option>
                 </select>
-                {errors.bearings &&  <p className='text-rose-400'>{errors.bearings.message}</p>}
+                {errors.bearings &&  <p className='w-40 text-rose-400'>{errors.bearings.message}</p>}
             </div>
         </div>
 
 
         <div className="gridRight col-start-4 col-end-5">
-            <div className='hover:scale-110 duration-700 rotate-3'>
+            <div className='info hover:scale-110 duration-700 rotate-3'>
                 {/* trucks select */}
-                <label className='text-indigo-400'>trucks</label>
-                <p className='solidLine'></p>
-                <select className='rounded-3xl border-none border-transparent border-indigo-400 text-center' value={trucks} onChange={(e)=>setTrucks(e.target.value)} onClick={changeTrucks}>
+                <label className='text-stone-600'>trucks</label>
+                <select className='rounded-3xl border-none border-transparent border-indigo-400 text-center bg-inherit text-slate-600' value={trucks} onChange={(e)=>setTrucks(e.target.value)} onClick={changeTrucks}>
                     {trucksdata.map((t)=>(
                     <option key={t.id} value={t.id}> {t.value} </option>))}
                 </select>
-                {errors.trucks &&  <p className='text-rose-400'>{errors.trucks.message}</p>}
+                {errors.trucks &&  <p className='w-40 text-rose-400'>{errors.trucks.message}</p>}
             </div>
 
-            <div className='hover:scale-110 duration-700 -rotate-3'>
+            <div className='info hover:scale-110 duration-700 -rotate-3'>
                 {/* wheels select */}
-                <label className='text-indigo-400'>wheels</label>
-                <p className='solidLine'></p>
-                <select className='rounded-3xl border-none border-transparent border-indigo-400 text-center' value={wheels} onChange={(e)=>setWheels(e.target.value)} onClick={changeWheels}>
+                <label className='text-stone-600'>wheels</label>
+                <select className='rounded-3xl border-none border-transparent border-indigo-400 text-center bg-inherit text-slate-600' value={wheels} onChange={(e)=>setWheels(e.target.value)} onClick={changeWheels}>
                     {wheeldata.map((w)=>(
                     <option key={w.id} value={w.id}> {w.value} </option>
                     ))}
                 </select>
-                {errors.wheels &&  <p className='text-rose-400'>{errors.wheels.message}</p>}
+                {errors.wheels &&  <p className='w-40 text-rose-400'>{errors.wheels.message}</p>}
             </div>
         </div>
 
         </div>
         <div className='buttons2 mt-4'>
-        <button className=' text-emerald-500 hover:scale-150 animate-pulse duration-700'>re:build</button>
+        <button className=' text-emerald-500 hover:scale-150 animate-pulse duration-700 ml-14'>re:build</button>
         </div>
     </form>
     </div>
+</div>
+</div>
 </div>
 )
 }
