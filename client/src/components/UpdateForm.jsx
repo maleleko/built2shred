@@ -61,12 +61,6 @@ const changeWheels = (e) => {
     console.log('changing wheels...')
 }
 
-useEffect(()=>{
-    setBoardState(boarddata[0])
-    setTruckState(trucksdata[0])
-    setWheelState(wheeldata[0])
-}, [])
-
 useEffect(()=> {
     axios.get(`http://localhost:8000/setup/${id}`)
     .then((res)=>{
@@ -82,6 +76,22 @@ useEffect(()=> {
         setBoardImages((`${(res.data.boardBrandImage)}`))
         setTrucksImages((`${(res.data.trucksbrandImage)}`))
         setWheelsImages((`${(res.data.wheelsBrandImage)}`))
+        boarddata.forEach((board) => {
+            if (board.id === res.data.boardBrand) {
+                setBoardState(board)
+            }
+        })
+        trucksdata.forEach((trucks) => {
+            if (trucks.id === res.data.trucks) {
+                setTruckState(trucks)
+            }
+        })
+        wheeldata.forEach((wheels) => {
+            if (wheels.id === res.data.wheels) {
+                setWheelState(wheels)
+            }
+        })
+
     }).catch((err)=>{
         console.log('ERRRRRRRRR----------', err)
     })
@@ -135,7 +145,7 @@ return (
                 <label className='text-indigo-400'>graphic</label>
                 <div className='solidLine'></div>
                 {/* <select className='rounded-3xl border-none border-transparent border-indigo-400 text-center' value={boardBrand} onChange={(e)=>setBoardBrand(e.target.value)} onSelect={changeBoard}> */}
-                <select className='rounded-3xl border-none border-transparent border-indigo-400 text-center' value={boardBrand} onChange={(e)=>setBoardBrand(e.target.value)} onMouseOver={changeBoard} >
+                <select className='rounded-3xl border-none border-transparent border-indigo-400 text-center' value={boardBrand} onChange={(e)=>setBoardBrand(e.target.value)} onClick={changeBoard} >
                     {boarddata.map((d) => (
                     <option key={d.id} value={d.id} > {d.value} </option>))}
                 </select>
@@ -175,10 +185,10 @@ return (
                 <div className='wholeComplete col-start-3'>
                     {/* {boardState.boardBrandImage} */}
                         
-                        <img className='board' src={boardState?.image} width='150rem' height='150rem' alt="building a board" />
+                        <img className='board' src={boardState?.image} width='125rem' height='125rem' alt="building a board" />
 
-                        <img  className='trucks' src={truckState?.image} width='150rem' height='150rem' alt='trucks' />
-                        <img className='wheels' src={wheelState?.image} width='150rem' height='150rem' alt='wheels' />
+                        <img  className='trucks' src={truckState?.image} width='125rem' height='125rem' alt='trucks' />
+                        <img className='wheels' src={wheelState?.image} width='125rem' height='125rem' alt='wheels' />
                 </div>
             </div>
             <div className='hover:scale-110 duration-700'>
@@ -201,7 +211,7 @@ return (
                 {/* trucks select */}
                 <label className='text-indigo-400'>trucks</label>
                 <p className='solidLine'></p>
-                <select className='rounded-3xl border-none border-transparent border-indigo-400 text-center' value={trucks} onChange={(e)=>setTrucks(e.target.value)} onMouseOver={changeTrucks}>
+                <select className='rounded-3xl border-none border-transparent border-indigo-400 text-center' value={trucks} onChange={(e)=>setTrucks(e.target.value)} onClick={changeTrucks}>
                     {trucksdata.map((t)=>(
                     <option key={t.id} value={t.id}> {t.value} </option>))}
                 </select>
@@ -226,20 +236,6 @@ return (
         <button className=' text-emerald-500 hover:scale-150 animate-pulse duration-700'>re:build</button>
         </div>
     </form>
-{/* 
-    <div className='wholeComplete'>
-    // POTENTIAL WORK AROUND METHOD | TRYING TO AVOID
-        <div className='board'>
-            
-            <img src={boardImages} width='250px' height='250px' alt="building a board" />)
-        </div>
-        <div className='trucks'>
-            <img src={trucksImages} width='250px' height='250px' alt='trucks' />
-        </div>
-        <div className='wheels'>
-            <img src={wheelsImages} width='250px' height='250px' alt='wheels' />
-        </div>
-    </div> */}
     </div>
 </div>
 )
