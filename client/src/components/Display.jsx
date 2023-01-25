@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 import Granim from 'granim'
-import NavBar from './NavBar'
 
 
 const Display = () => {

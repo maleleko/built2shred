@@ -9,99 +9,99 @@ import Granim from 'granim'
 
 const BuildOne = () => {
 
-  // states
-  const [boardState, setBoardState] = useState('')
-  const [truckState, setTruckState] = useState('')
-  const [wheelState, setWheelState] = useState('')
+    // states
+    const [boardState, setBoardState] = useState('')
+    const [truckState, setTruckState] = useState('')
+    const [wheelState, setWheelState] = useState('')
 
-  const [name, setName] = useState('')
-  const [boardBrand, setBoardBrand] = useState('')
-  const [size, setSize] = useState('')
-  const [griptape, setGriptape] = useState('')
-  const [trucks, setTrucks] = useState('')
-  const [wheels, setWheels] = useState('')
-  const [bearings, setBearings] = useState('')
+    const [name, setName] = useState('')
+    const [boardBrand, setBoardBrand] = useState('')
+    const [size, setSize] = useState('')
+    const [griptape, setGriptape] = useState('')
+    const [trucks, setTrucks] = useState('')
+    const [wheels, setWheels] = useState('')
+    const [bearings, setBearings] = useState('')
 
-  // errors
-  const [errors, setErrors] = useState({})
+    // errors
+    const [errors, setErrors] = useState({})
 
-  // nav
-  const navigate = useNavigate()
+    // nav
+    const navigate = useNavigate()
 
 
-  // onChange functions
-  const changeBoard = (e) => {
-    const selectedBoardId = e.target.value;
-    const selectedBoardState=boarddata.filter((d)=>d.id===selectedBoardId)[0];
-    setBoardState(selectedBoardState);
-    console.log('changing board..')
-  }
+    // onChange functions
+    const changeBoard = (e) => {
+        const selectedBoardId = e.target.value;
+        const selectedBoardState=boarddata.filter((d)=>d.id===selectedBoardId)[0];
+        setBoardState(selectedBoardState);
+        console.log('changing board..')
+    }
 
-  const changeTrucks = (e) => {
-    const selectedTrucksId = e.target.value
-    const selectedTruckState=trucksdata.filter((t)=>t.id===selectedTrucksId)[0]
-    setTruckState(selectedTruckState)
-    console.log('changing trucks...')
-  }
+    const changeTrucks = (e) => {
+        const selectedTrucksId = e.target.value
+        const selectedTruckState=trucksdata.filter((t)=>t.id===selectedTrucksId)[0]
+        setTruckState(selectedTruckState)
+        console.log('changing trucks...')
+    }
 
-  const changeWheels = (e) => {
-    const selectedWheelsId = e.target.value
-    const selectedWheelsState=wheeldata.filter((w)=>w.id===selectedWheelsId)[0]
-    setWheelState(selectedWheelsState)
-    console.log('changing wheels...')
-  }
+    const changeWheels = (e) => {
+        const selectedWheelsId = e.target.value
+        const selectedWheelsState=wheeldata.filter((w)=>w.id===selectedWheelsId)[0]
+        setWheelState(selectedWheelsState)
+        console.log('changing wheels...')
+    }
 
-  useEffect(()=>{
-    setBoardState(boarddata[0])
-    setTruckState(trucksdata[0])
-    setWheelState(wheeldata[0])
-  }, [])
+    useEffect(()=>{
+        setBoardState(boarddata[0])
+        setTruckState(trucksdata[0])
+        setWheelState(wheeldata[0])
+    }, [])
 
     // submit handler
     const submitHandler = (e) => {
-      e.preventDefault()
-      axios.post('http://localhost:8000/buildyourown', {
-        name,
-        boardBrand,
-        'boardBrandImage':boardState.image, 
-        size,
-        griptape,
-        trucks,
-        'trucksbrandImage':truckState.image,
-        wheels,
-        'wheelsBrandImage':wheelState.image,
-        bearings,
-      }).then((res)=>{
-        navigate('/display')
-      }).catch((err)=>{
-        console.log('ERRRRRRR----------', err)
-        setErrors(err.response.data.errors)
-      })
+        e.preventDefault()
+        axios.post('http://localhost:8000/buildyourown', {
+            name,
+            boardBrand,
+            'boardBrandImage':boardState.image, 
+            size,
+            griptape,
+            trucks,
+            'trucksbrandImage':truckState.image,
+            wheels,
+            'wheelsBrandImage':wheelState.image,
+            bearings,
+        }).then((res)=>{
+            navigate('/display')
+        }).catch((err)=>{
+            console.log('ERRRRRRR----------', err)
+            setErrors(err.response.data.errors)
+        })
     }
 
     //background effect
     useEffect(()=> {
-      new Granim({
-          element: "#logo-canvas",
-          direction: "radial",
-          opacity: [1, 1],
-          states: {
-              'default-state':{
-                  gradients: [
-                      ['#ffffff', '#202D3A'],
-                      ['#ffffff', '#000000'],
-                      ['#ffffff', '#536E8A'],
-                      ['#ffffff', '#5A5C6A'],
-                      ['#ffffff', '#434343'],
-                      ['#ffffff', '#6B646E']
-                  ],
-                  transitionSpeed: 1200,
-              }
-          }
-      })
-  }, [])
+        new Granim({
+            element: "#logo-canvas",
+            direction: "radial",
+            opacity: [1, 1],
+            states: {
+                'default-state':{
+                    gradients: [
+                        ['#ffffff', '#202D3A'],
+                        ['#ffffff', '#000000'],
+                        ['#ffffff', '#536E8A'],
+                        ['#ffffff', '#5A5C6A'],
+                        ['#ffffff', '#434343'],
+                        ['#ffffff', '#6B646E']
+                    ],
+                    transitionSpeed: 1200,
+                }
+            }
+        })
+    }, [])
 
-  return (
+return (
     <div className='bloc-logo'> 
     <canvas id='logo-canvas' />
     <div className="logo-mask">
@@ -147,7 +147,7 @@ const BuildOne = () => {
 
         <div className="detailsSize ">
           {/* size select */}
-          <div className='info hover:scale-110 duration-700' >
+            <div className='info hover:scale-110 duration-700' >
             <label className='text-stone-600'>size</label>
             <select className='rounded-3xl border-none border-transparent border-indigo-400 text-center bg-inherit text-slate-600' onChange={(e)=>setSize(e.target.value)}>
                 <option className='' value="">width</option>

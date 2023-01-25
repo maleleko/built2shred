@@ -1,13 +1,10 @@
 import React, {useState} from 'react'
 import '../App.css'
-import ReactPlayer from 'react-player'
 
 
 
 
 const Culture = () => {
-  const [youtubeID] = useState('Am3pP6CW_S4')
-
 
   return (
     <div className='culture-content'>
@@ -111,7 +108,7 @@ const Culture = () => {
         <div className='textcontent font-mono text-sm'>
           <p className='texttag font-mono text-sm'>now we're here in the 2000s, skateboarding is very much alive and well. with thousands of skateparks built around the world and with much support of the skateboarding community, millions of people have access to the ability to learn, shred, express themselves, have fun, make new friends, and make memories. skateboarding is an art, and the pavement is your canvas. express yourself in whichever way you see fit, put your feet on the board and experience freedom. go out, eat some concrete, shred and most importantly, have fun.</p> <br />
 
-          <p className='texttag font-mono text-sm'>below, is a featured video of the skateboarding legend Jeff Grosso(may he rest in peace), go more into detail about the underlying philosophy of skateboarding.</p>
+          {/* <p className='texttag font-mono text-sm'>below, is a featured video of the skateboarding legend Jeff Grosso(may he rest in peace), go more into detail about the underlying philosophy of skateboarding.</p> */}
 
           
         </div>
