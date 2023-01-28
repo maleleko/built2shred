@@ -31,6 +31,8 @@ future development:
     add unique statistics to each board part
     animated & more tasteful css across the entire application
     clean up code
-    many more to come
+    add log in/register
+    add a likes button to created boards
+    and many more
 
 thank you for taking the time to view my application, looking to build this out some more for fun in the future.
