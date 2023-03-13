@@ -1,9 +1,11 @@
 built 2 shred.
 
+build your own favorite skateboard! select from a range of graphic designs, wheels and trucks!
+
 a solo project built for coding dojo's projects & algorithms final stack.
 
 theme: skateboarding focused
-styling: minimalistic, yet tasteful(imo)
+styling: minimalistic
 functionality: full crud
 responsiveness: 85-90%
 
